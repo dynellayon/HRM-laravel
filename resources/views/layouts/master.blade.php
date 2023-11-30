@@ -334,8 +334,7 @@
 		<!-- /Page Wrapper -->
 	</div>
 	<!-- /Main Wrapper -->
-
-	<!-- jQuery -->
+<!-- jQuery -->
 	<script src="{{ URL::to('assets/js/jquery-3.5.1.min.js') }}"></script>
 	<!-- Bootstrap Core JS -->
 	<script src="{{ URL::to('assets/js/popper.min.js') }}"></script>

@@ -116,6 +116,7 @@ Route::controller(UserManagementController::class)->group(function () {
 // ----------------------------- user userManagement -----------------------//
 Route::controller(UserManagementController::class)->group(function () {
     Route::get('userManagement', 'index')->middleware('auth')->name('userManagement');
+     Route::get('usermanagement/adduser', 'adduser')->name('usermanagement/adduser');
     Route::post('user/add/save', 'addNewUserSave')->name('user/add/save');
     Route::post('search/user/list', 'searchUser')->name('search/user/list');
     Route::post('update', 'update')->name('update');

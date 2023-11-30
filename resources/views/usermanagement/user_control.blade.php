@@ -15,7 +15,7 @@
                         </ul>
                     </div>
                     <div class="col-auto float-right ml-auto">
-                        <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_user"><i class="fa fa-plus"></i> Add User</a>
+                        <a href="{{route('usermanagement/adduser')}}" class="btn add-btn" ><i class="fa fa-plus"></i> Add User</a>
                     </div>
                 </div>
             </div>
@@ -54,12 +54,12 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="table-responsive">
-                        <table class="table table-striped custom-table datatable">
+                        <table id="example"  class="table table-striped custom-table datatable">
                             <thead>
                                 <tr>
                                     <th>Name</th>
                                     <th>User ID</th>
-                                    <th hidden></th>
+                                   
                                     <th>Email</th>
                                     <th>Position</th>
                                     <th>Phone</th>
@@ -73,14 +73,8 @@
                             <tbody>
                                 @foreach ($result as $key=>$user )
                                 <tr>
-                                    <td>
-                                        <span hidden class="image">{{ $user->avatar}}</span>
-                                        <h2 class="table-avatar">
-                                            <a href="{{ url('employee/profile/'.$user->user_id) }}" class="avatar"><img src="{{ URL::to('/assets/images/'. $user->avatar) }}" alt="{{ $user->avatar }}"></a>
-                                            <a href="{{ url('employee/profile/'.$user->user_id) }}" class="name">{{ $user->name }}</span></a>
-                                        </h2>
-                                    </td>
-                                    <td hidden class="ids">{{ $user->id }}</td>
+                                  
+                                <td class="name">{{ $user->name }}</td>
                                     <td class="id">{{ $user->user_id }}</td>
                                     <td class="email">{{ $user->email }}</td>
                                     <td class="position">{{ $user->position }}</td>
@@ -89,11 +83,7 @@
                                     <td>
                                         @if ($user->role_name=='Admin')
                                             <span class="badge bg-inverse-danger role_name">{{ $user->role_name }}</span>
-                                            @elseif ($user->role_name=='Super Admin')
-                                            <span class="badge bg-inverse-warning role_name">{{ $user->role_name }}</span>
-                                            @elseif ($user->role_name=='Normal User')
-                                            <span class="badge bg-inverse-info role_name">{{ $user->role_name }}</span>
-                                            @elseif ($user->role_name=='Client')
+                                            @elseif ($user->role_name=='HR')
                                             <span class="badge bg-inverse-success role_name">{{ $user->role_name }}</span>
                                             @elseif ($user->role_name=='Employee')
                                             <span class="badge bg-inverse-dark role_name">{{ $user->role_name }}</span>
@@ -157,107 +147,6 @@
         <!-- /Page Content -->
         
 
-        <!-- Add User Modal -->
-        <div id="add_user" class="modal custom-modal fade" role="dialog">
-            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Add New User</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form action="{{ route('user/add/save') }}" method="POST" enctype="multipart/form-data">
-                            @csrf
-                            <div class="row"> 
-                                <div class="col-sm-6"> 
-                                    <div class="form-group">
-                                        <label>Full Name</label>
-                                        <input class="form-control @error('name') is-invalid @enderror" type="text" id="" name="name" value="{{ old('name') }}" placeholder="Enter Name">
-                                    </div>
-                                </div>
-                                <div class="col-sm-6"> 
-                                    <label>Emaill Address</label>
-                                    <input class="form-control" type="email" id="" name="email" placeholder="Enter Email">
-                                </div>
-                            </div>
-                            <div class="row"> 
-                                <div class="col-sm-6"> 
-                                    <label>Role Name</label>
-                                    <select class="select" name="role_name" id="role_name">
-                                        <option selected disabled> --Select --</option>
-                                        @foreach ($role_name as $role )
-                                        <option value="{{ $role->role_type }}">{{ $role->role_type }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="col-sm-6"> 
-                                    <label>Position</label>
-                                    <select class="select" name="position" id="position">
-                                        <option selected disabled> --Select --</option>
-                                        @foreach ($position as $positions )
-                                        <option value="{{ $positions->position }}">{{ $positions->position }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <br>
-                            <div class="row"> 
-                                <div class="col-sm-6"> 
-                                    <div class="form-group">
-                                        <label>Phone</label>
-                                        <input class="form-control" type="tel" id="" name="phone" placeholder="Enter Phone">
-                                    </div>
-                                </div>
-                                <div class="col-sm-6"> 
-                                    <label>Department</label>
-                                    <select class="select" name="department" id="department">
-                                        <option selected disabled> --Select --</option>
-                                        @foreach ($department as $departments )
-                                        <option value="{{ $departments->department }}">{{ $departments->department }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="row"> 
-                                <div class="col-sm-6"> 
-                                    <label>Status</label>
-                                    <select class="select" name="status" id="status">
-                                        <option selected disabled> --Select --</option>
-                                        @foreach ($status_user as $status )
-                                        <option value="{{ $status->type_name }}">{{ $status->type_name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="col-sm-6"> 
-                                    <label>Photo</label>
-                                    <input class="form-control" type="file" id="image" name="image">
-                                </div>
-                            </div>
-                            <br>
-                            <div class="row"> 
-                                <div class="col-sm-6"> 
-                                    <div class="form-group">
-                                        <label>Password</label>
-                                        <input type="password" class="form-control" name="password" placeholder="Enter Password">
-                                    </div>
-                                </div>
-                                <div class="col-sm-6"> 
-                                    <label>Repeat Password</label>
-                                    <input type="password" class="form-control" name="password_confirmation" placeholder="Choose Repeat Password">
-                                </div>
-                            </div>
-                            <div class="submit-section">
-                                <button type="submit" class="btn btn-primary submit-btn">Submit</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- /Add User Modal -->
-				
         <!-- Edit User Modal -->
         <div id="edit_user" class="modal custom-modal fade" role="dialog">
             <div class="modal-dialog modal-dialog-centered modal-md" role="document">
@@ -416,6 +305,32 @@
             $('.e_avatar').val(_this.find('.image').text());
         });
     </script>
+
+
+ <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.bootstrap4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.colVis.min.js"></script>
+   
+   
+    <script>
+	$(document).ready(function() {
+	    var table = $('#example').DataTable( {
+	        lengthChange: false,
+	        buttons: [ 'copy', 'excel', 'csv', 'pdf', 'colvis' ]
+	    } );
+	 
+	    table.buttons().container()
+	        .appendTo( '#example_wrapper .col-md-6:eq(0)' );
+	} );
+     </script>
     @endsection
 
 @endsection

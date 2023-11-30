@@ -35,6 +35,22 @@ class UserManagementController extends Controller
         }
         
     }
+    public function adduser()
+    {
+        if (Auth::user()->role_name=='Admin')
+        {
+          
+            $role_name   = DB::table('role_type_users')->get();
+            $position    = DB::table('position_types')->get();
+            $department  = DB::table('departments')->get();
+            $status_user = DB::table('user_types')->get();
+            return view('usermanagement.adduser',compact('role_name','position','department','status_user'));
+        }
+        else
+        {
+            return redirect()->route('home');
+        }
+    }
     // search user
     public function searchUser(Request $request)
     {
