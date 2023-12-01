@@ -24,5 +24,13 @@ class StaffSalary extends Model
         'leave',
         'prof_tax',
         'labour_welfare',
+        'absences',
+        'tardiness',
+        'Overtime',
+        'Tax',
+        'sss',
+        'philhealth',
+        'hdmf',
+        
     ];
 }

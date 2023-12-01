@@ -57,7 +57,7 @@
                                         <li><h5 class="mb-0"><strong>{{ $users->name }}</strong></h5></li>
                                         <li><span>{{ $users->position }}</span></li>
                                         <li>Employee ID: {{ $users->user_id }}</li>
-                                        <li>Joining Date: {{ $users->join_date }}</li>
+                                        <li  id="start_date">Joining Date: {{ $users->join_date }}</li>
                                     </ul>
                                 </div>
                             </div>
@@ -69,19 +69,26 @@
                                             <tbody>
                                                 <?php
                                                     $a =  (int)$users->basic;
-                                                    $b =  (int)$users->hra;
+                                                    $b =  (int)$users->medical_allowance;
                                                     $c =  (int)$users->conveyance;
+                                                    $d =  (int)$users->Overtime;
                                                     $e =  (int)$users->allowance;
-                                                    $Total_Earnings   = $a + $b + $c + $e;
+                                                    $Total_Earnings   = $a + $b + $c + $d+ $e;
                                                 ?>
                                                 <tr>
                                                     <td><strong>Basic Salary</strong> <span class="float-right">₱{{ $users->basic }}</span></td>
                                                 </tr>
                                                 <tr>
-                                                    <td><strong>House Rent Allowance (H.R.A.)</strong> <span class="float-right">₱{{ $users->hra }}</span></td>
+                                                    <td><strong> Allowance/s</strong> <span class="float-right">₱{{ $users->allowance }}</span></td>
                                                 </tr>
                                                 <tr>
                                                     <td><strong>Conveyance</strong> <span class="float-right">₱{{ $users->conveyance }}</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Overtime</strong> <span class="float-right">₱{{ $users->Overtime }}</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Medical Allowance</strong> <span class="float-right">₱{{ $users->medical_allowance }}</span></td>
                                                 </tr>
                                                 <tr>
                                                     <td><strong>Other Allowance</strong> <span class="float-right">₱{{ $users->allowance }}</span></td>
@@ -99,23 +106,37 @@
                                         <table class="table table-bordered">
                                             <tbody>
                                                 <?php
-                                                    $a =  (int)$users->tds;
-                                                    $b =  (int)$users->prof_tax;
-                                                    $c =  (int)$users->esi;
+                                                    $a =  (int)$users->Tax;
+                                                    $b =  (int)$users->absences;
+                                                    $c =  (int)$users->tardiness;
+                                                    $d =  (int)$users->sss;
                                                     $e =  (int)$users->labour_welfare;
-                                                    $Total_Deductions   = $a + $b + $c + $e;
+                                                    $f = (int)$users->sss;
+                                                    $g = (int)$users->philhealth;
+                                                    $h = (int)$users->hdmf;
+                                                    $i = (int)$users->pf;
+                                                    $Total_Deductions   = $a + $b + $c+ $d + $e +$f + $g+ $h + $i;
                                                 ?>
                                                 <tr>
-                                                    <td><strong>Tax Deducted at Source (T.D.S.)</strong> <span class="float-right">₱{{ $users->tds }}</span></td>
+                                                    <td><strong>Tax</strong> <span class="float-right">₱{{ $users->Tax }}</span></td>
                                                 </tr>
                                                 <tr>
-                                                    <td><strong>Provident Fund</strong> <span class="float-right">₱{{ $users->prof_tax }}</span></td>
+                                                    <td><strong>Absences</strong> <span class="float-right">₱{{ $users->absences }}</span></td>
                                                 </tr>
                                                 <tr>
-                                                    <td><strong>ESI</strong> <span class="float-right">₱{{ $users->esi }}</span></td>
+                                                    <td><strong>Tardiness</strong> <span class="float-right">₱{{ $users->tardiness }}</span></td>
                                                 </tr>
                                                 <tr>
-                                                    <td><strong>Loan</strong> <span class="float-right">₱{{ $users->labour_welfare }}</span></td>
+                                                    <td><strong>SSS</strong> <span class="float-right">₱{{ $users->sss }}</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Philhealth</strong> <span class="float-right">₱{{ $users->philhealth }}</span></td>
+                                                </tr>
+                                                 <tr>
+                                                    <td><strong>HDMF</strong> <span class="float-right">₱{{ $users->hdmf }}</span></td>
+                                                </tr>
+                                                 <tr>
+                                                    <td><strong>others</strong> <span class="float-right">₱{{ $users->pf }}</span></td>
                                                 </tr>
                                                 <tr>
                                                     <td><strong>Total Deductions</strong> <span class="float-right"><strong>₱<?php echo $Total_Deductions;?></strong></span></td>
@@ -137,4 +158,5 @@
     </div>
     <!-- /Page Wrapper -->
     </div>
+
 @endsection
