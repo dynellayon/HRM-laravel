@@ -118,7 +118,7 @@
                                                     $Total_Deductions   = $a + $b + $c+ $d + $e +$f + $g+ $h + $i;
                                                 ?>
                                                 <tr>
-                                                    <td><strong>Tax</strong> <span class="float-right">₱{{ $users->Tax }}</span></td>
+                                                    <td><strong>Tax(10%)</strong> <span class="float-right">₱{{ $users->Tax }}</span></td>
                                                 </tr>
                                                 <tr>
                                                     <td><strong>Absences</strong> <span class="float-right">₱{{ $users->absences }}</span></td>

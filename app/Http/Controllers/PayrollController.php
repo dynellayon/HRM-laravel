@@ -20,8 +20,7 @@ class PayrollController extends Controller
 
     // save record
     public function saveRecord(Request $request)
-    {
-       
+    {   
     $request->validate([
         'name'         => 'required|string|max:255',
         'salary'       => 'required|string|max:255',
@@ -32,7 +31,6 @@ class PayrollController extends Controller
         'absences' => 'required|string|max:255',
         'tardiness' => 'required|string|max:255',
         'overtime'  => 'required|string|max:255',
-        'tax' => 'required|string|max:255',
         'sss'  => 'required|string|max:255',
         'philhealth' => 'required|string|max:255',
         'hdmf'  => 'required|string|max:255',
@@ -40,7 +38,7 @@ class PayrollController extends Controller
         'leave'    => 'required|string|max:255',
         'labour_welfare' => 'required|string|max:255',
     ]);
-
+$tax=$request->basic * .10;
     DB::beginTransaction();
     try {
         $salary = StaffSalary::updateOrCreate(['user_id' => $request->user_id]);
@@ -54,7 +52,7 @@ class PayrollController extends Controller
         $salary->absences          = $request->absences;
         $salary->tardiness         = $request->tardiness;
         $salary->Overtime         = $request->overtime;
-        $salary->tax         = $request->tax;
+        $salary->tax         = $tax;
         $salary->sss         = $request->sss;
         $salary->philhealth         = $request->philhealth;
         $salary->hdmf         = $request->hdmf;

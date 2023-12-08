@@ -260,15 +260,7 @@
                                             </span>
                                         @enderror
                                     </div> 
-                                    <div class="form-group">
-                                        <label>Tax</label>
-                                        <input class="form-control @error('tax') is-invalid @enderror" type="number" name="tax" id="tax" value="{{ old('tax') }}" placeholder="Enter tax">
-                                        @error('tax')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div> 
+                                    
                                     <div class="form-group">
                                         <label>SSS</label>
                                         <input class="form-control @error('sss') is-invalid @enderror" type="number" name="sss" id="sss" value="{{ old('sss') }}" placeholder="Enter sss">

@@ -18,9 +18,7 @@
                             <li class="breadcrumb-item active">Salary</li>
                         </ul>
                     </div>
-                    <div class="col-auto float-right ml-auto">
-                        <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_salary"><i class="fa fa-plus"></i> Add Salary</a>
-                    </div>
+                    
                 </div>
             </div>
 
